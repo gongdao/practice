@@ -7,8 +7,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: theme.spacing(1),
   },
   label: {
-    fontSize: 19,
+    fontSize: 14,
     color: 'rgb(0,0,0,0.4)',
+    paddingLeft: '5px',
+  },
+  staticLabel: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'rgb(0,0,0,0.9)',
     paddingLeft: '5px',
   },
   inputs: {
@@ -21,12 +27,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: '#3a8dff',
   },
   submit: {
-    margin: theme.spacing(3, 2, 2),
     padding: 10,
-    width: 160,
-    height: 56,
+    width: 120,
+    height: 40,
     borderRadius: theme.shape.borderRadius,
-    marginTop: 49,
     fontSize: 16,
     backgroundColor: '#3a8dff',
     fontWeight: 'bold',
