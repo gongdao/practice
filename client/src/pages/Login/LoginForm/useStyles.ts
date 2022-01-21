@@ -1,20 +1,12 @@
-import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: 0,
   },
   label: {
-    fontSize: 14,
-    color: 'rgb(0,0,0,0.4)',
-    paddingLeft: '5px',
-  },
-  staticLabel: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: 'rgb(0,0,0,0.9)',
+    color: 'rgb(0,0,0,0.0)',
     paddingLeft: '5px',
   },
   inputs: {
@@ -30,10 +22,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: 10,
     width: 120,
     height: 40,
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: 0,
     fontSize: 16,
     backgroundColor: '#3a8dff',
-    fontWeight: 'bold',
   },
 }));
 
