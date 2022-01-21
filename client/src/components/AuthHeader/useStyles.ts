@@ -1,7 +1,6 @@
-import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   authHeader: {
     marginLeft: 50,
     alignItems: 'center',
@@ -15,7 +14,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   accBtn: {
     width: 100,
     height: 0,
-    borderRadius: theme.shape.borderRadius,
     backgroundColor: '#ffffff',
   },
 }));

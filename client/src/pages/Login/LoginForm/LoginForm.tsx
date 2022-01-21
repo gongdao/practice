@@ -46,17 +46,16 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
     >
       {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
-          <Box ml={2.2} mb={-2} mt={2}>
-            <Typography className={classes.staticLabel} style={{ fontWeight: 700 }}>
-              Email address
-            </Typography>
+          <Box ml={2.8} mb={-3.5} mt={3.5}>
+            <Typography sx={{ fontWeight: 700 }}>E-mail address</Typography>
           </Box>
           <TextField
             id="email"
+            label={<Typography className={classes.label}>E-mail address</Typography>}
             fullWidth
             margin="normal"
             InputLabelProps={{
-              shrink: false,
+              shrink: true,
             }}
             InputProps={{
               classes: { input: classes.inputs },
@@ -70,13 +69,12 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             value={values.email}
             onChange={handleChange}
           />
-          <Box ml={2.2} mb={-2} mt={2}>
-            <Typography className={classes.staticLabel} style={{ fontWeight: 700 }}>
-              Password
-            </Typography>
+          <Box ml={2.8} mb={-3.5} mt={3.5}>
+            <Typography style={{ fontWeight: 700 }}>Password</Typography>
           </Box>
           <TextField
             id="password"
+            label={<Typography className={classes.label}>Password</Typography>}
             placeholder={'Your password'}
             fullWidth
             margin="normal"

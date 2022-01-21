@@ -1,17 +1,12 @@
-import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   chatSideBanner: {
     height: '100vh',
     padding: '1rem 1rem',
     width: drawerWidth,
-    [theme.breakpoints.up('md')]: {
-      padding: '2rem 2rem',
-      width: '300px',
-    },
   },
   userPanel: {
     paddingBottom: '2rem',
