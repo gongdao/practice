@@ -1,12 +1,10 @@
-import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   search: {
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
     backgroundColor: '#E9EEF9',
     marginLeft: 0,
     height: '50px',
@@ -20,9 +18,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: '0 0.5rem',
   },
   searchInput: {
-    padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     width: '100%',
     fontWeight: 600,
   },
