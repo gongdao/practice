@@ -16,16 +16,16 @@ describe("/POST ping", () => {
         done();
       });
   });
-  it('should create a new user', (done) => {
-    chai
-      .request('http://localhost:3001')
-      .post('/auth/register')
-      .send({username: 'Bob', email: 'bob@yahoo.ca', password: 'password'})
-      .end((err, res) => {
-        chai.expect(res.status).to.equal(201)
-        done()
-      })
-  })
+  // it('should create a new user', (done) => {
+  //   chai
+  //     .request('http://localhost:3001')
+  //     .post('/auth/register')
+  //     .send({username: 'Bob', email: 'bob@yahoo.ca', password: 'password'})
+  //     .end((err, res) => {
+  //       chai.expect(res.status).to.equal(201)
+  //       done()
+  //     })
+  // })
   it('should login successfully', (done) => {
     chai
       .request('http://localhost:3001')
