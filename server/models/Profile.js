@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const profileSchema = new mongoose.Schema({
   user: {
@@ -34,7 +35,10 @@ const profileSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
-  
+  imgurl: {
+    type: String,
+    trim: true
+  },  
   create_date: {
     type: Date,
     default: Date.now
