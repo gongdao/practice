@@ -7,16 +7,21 @@ import {
   Typography,
   Menu,
   MenuItem,
-  ListItemIcon,
   ListItemText,
   Divider,
+  Box,
+  ListItemIcon,
 } from '@mui/material';
-import { Menu as MenuIcon, AccountCircle } from '@mui/icons-material';
 import { Person as ProfileIcon, Logout as LogoutIcon, Settings as SettingsIcon } from '@mui/icons-material';
+import AvatarDisplay from '../AvatarDisplay/AvatarDisplay';
+import logo from '../../assets/imgs/logo.png';
+import { useHistory } from 'react-router-dom';
+import greenDot from '../../assets/avatar/greenDot.png';
 
 const Navbar: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { loggedInUser, logout } = useAuth();
+  const history = useHistory();
 
   const open = Boolean(anchorEl);
 
@@ -26,6 +31,10 @@ const Navbar: React.FC = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+    history.push('/profile');
+  };
+  const toDashboard = () => {
+    history.push('/dashboard');
   };
 
   const handleLogout = () => {
@@ -34,16 +43,24 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ background: '#eee', boxShadow: 0 }}>
       <Toolbar>
-        <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          My App
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml: 5 }}>
+          <img src={logo} alt="logo.png" />
         </Typography>
         {loggedInUser && (
           <>
+            <MenuItem onClick={toDashboard}>
+              <Typography sx={{ color: '#000', fontWeight: 600 }} textAlign="center">
+                Dashboard
+              </Typography>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Typography sx={{ color: '#000', fontWeight: 600 }} textAlign="center">
+                Messages
+              </Typography>
+              <img src={greenDot} alt="green dot" />
+            </MenuItem>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -52,8 +69,11 @@ const Navbar: React.FC = () => {
               onClick={handleMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <Box sx={{ mr: 5 }}>
+                <AvatarDisplay user={loggedInUser} loggedIn={true} />
+              </Box>
             </IconButton>
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}

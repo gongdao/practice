@@ -12,14 +12,12 @@ const useStyles = makeStyles(() => ({
     alignItems: 'flex-start',
     justifyContent: 'space-between',
     flexDirection: 'column',
-    minHeight: '100vh',
+    minHeight: '50vh',
     paddingTop: 23,
   },
   welcome: {
     fontSize: 26,
     paddingBottom: 20,
-    color: '#000000',
-    fontWeight: 700,
   },
 }));
 

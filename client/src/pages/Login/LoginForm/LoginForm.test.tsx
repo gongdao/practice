@@ -7,12 +7,10 @@ describe('LoginForm tests', () => {
   test('smoke test', () => {
     render(<LoginForm {...props} />);
   });
-
   test('snapshot test', () => {
     const { asFragment } = render(<LoginForm {...props} />);
     expect(asFragment).toMatchSnapshot();
   });
-
   test('can input values and submit form', async () => {
     const { getByLabelText, getByText } = render(<LoginForm {...props} />);
     const email = getByLabelText('E-mail address');
@@ -21,12 +19,9 @@ describe('LoginForm tests', () => {
     expect(password).toBeInTheDocument();
     const login = getByText('Login');
     expect(login).toBeInTheDocument();
-
     fireEvent.change(email, { target: { value: 'testUser@gmail.com' } });
     fireEvent.change(password, { target: { value: 'password123' } });
-
     fireEvent.click(login);
-
     await waitFor(() => {
       expect(props.handleSubmit).toBeCalledWith(
         {

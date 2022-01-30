@@ -1,14 +1,12 @@
-import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: 0,
   },
   label: {
-    fontSize: 19,
-    color: 'rgb(0,0,0,0.4)',
+    color: 'rgb(0,0,0,0.0)',
     paddingLeft: '5px',
   },
   inputs: {
@@ -21,15 +19,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: '#3a8dff',
   },
   submit: {
-    margin: theme.spacing(3, 2, 2),
     padding: 10,
-    width: 160,
-    height: 56,
-    borderRadius: theme.shape.borderRadius,
-    marginTop: 49,
+    width: 120,
+    height: 40,
+    borderRadius: 0,
     fontSize: 16,
     backgroundColor: '#3a8dff',
-    fontWeight: 'bold',
   },
 }));
 
