@@ -1,6 +1,5 @@
 import { useHistory } from 'react-router-dom';
 import { Box, CircularProgress, Grid, MenuItem, MenuList } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { User } from '../../interface/User';
 
 interface Props {
@@ -46,7 +45,7 @@ const MenuBar = ({ loggedInUser, active }: Props): JSX.Element => {
   };
 
   return (
-    <Grid xs={10} container justifyContent="flex-end" sx={{ border: '1px solid #fff' }}>
+    <Grid item xs={10} container justifyContent="flex-end" sx={{ border: '1px solid #fff' }}>
       <MenuList>{createMenu()}</MenuList>
     </Grid>
   );

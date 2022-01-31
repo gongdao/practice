@@ -5,7 +5,7 @@
     "pretty-quick": "^3.1.1"
   },
   "scripts": {
-    "test": "supervisor -q -n exit -x mocha -- -b"
+    "test": "supervisor -q -n exit -x mocha -- -b",
     "prepare": "husky install"
   }
 }

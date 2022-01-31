@@ -1,20 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/useAuthContext';
-import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import { CircularProgress, Typography, Grid, Box, Avatar, Button } from '@mui/material';
 import { Navbar } from '../../components/Navbar/Navbar';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MenuBar from '../../components/ProfileMenu/MenuBar';
+import getProfile from '../../helpers/APICalls/getProfile';
+import { iProfile } from '../../interface/Profile';
 
 export default function Profile(): JSX.Element {
   const { loggedInUser } = useAuth();
-  const { initSocket } = useSocket();
+  const [data, setData] = useState<iProfile>();
   const history = useHistory();
 
   useEffect(() => {
-    initSocket();
-  }, [initSocket]);
+    const getData = async () => {
+      if (loggedInUser) {
+        const response = await getProfile({ userId: loggedInUser.id });
+        setData(response);
+      }
+    };
+    getData();
+  }, [loggedInUser]);
 
   if (loggedInUser === undefined) return <CircularProgress />;
   if (!loggedInUser) {
@@ -30,31 +37,41 @@ export default function Profile(): JSX.Element {
         <Grid item xs={2.2} sx={{ mr: -5 }}>
           <MenuBar loggedInUser={loggedInUser} active="Profile" />
         </Grid>
-        <Grid item xs={8} sx={{ borderLeft: '1px solid #fff' }}>
-          <Grid item display="flex" flexDirection="column" alignItems="center">
-            <Typography variant="h4" sx={{ mt: 1 }}>
-              Profile Photo
-            </Typography>
-            <Avatar
-              alt="user photo"
-              src={`https://robohash.org/${loggedInUser.email}.png`}
-              sx={{ width: 86, height: 86, my: 3 }}
-            />
-            <Typography variant="body1">Be sure to use photo that clearly show your face</Typography>
-            <Box sx={{ marginTop: 3 }}>
-              <Button
-                type="submit"
-                size="large"
-                sx={{ color: '#ff0000', border: 'solid red 1px', width: '320', height: '56' }}
-              >
-                {'Upload a file from your device'}
-              </Button>
-            </Box>
-            <Grid item display="flex" flexDirection="row" style={{ marginTop: 26 }}>
-              <DeleteIcon />
-              <Typography variant="body1">Delete photo</Typography>
+        <Grid item xs={8} sx={{ borderLeft: '1px solid #fff', mt: -5 }}>
+          {data && (
+            <Grid item display="flex" flexDirection="column" alignItems="center">
+              <Avatar
+                alt="user photo"
+                src={`https://robohash.org/${loggedInUser.email}.png`}
+                sx={{ width: 86, height: 86, my: 3 }}
+              />
+
+              <Typography variant="body1">
+                First Name: <strong>{data.firstname} </strong>
+              </Typography>
+              <Typography variant="body1">
+                Last Name: <strong>{data.lastname} </strong>
+              </Typography>
+              <Typography variant="body1">
+                Description: <strong>{data.description} </strong>
+              </Typography>
+              <Typography variant="body1">
+                Availability: <strong>{data.availability} </strong>
+              </Typography>
+              <Typography variant="body1">
+                Telephone: <strong>{data.telephone} </strong>
+              </Typography>
+              <Typography variant="body1">
+                Address: <strong>{data.address} </strong>
+              </Typography>
+              <Typography variant="body1">
+                Create Date: <strong>{data.create_date} </strong>
+              </Typography>
+              <Typography variant="body1">
+                Modify Date: <strong>{data.modify_date} </strong>
+              </Typography>
             </Grid>
-          </Grid>
+          )}
         </Grid>
       </Grid>
     </>
