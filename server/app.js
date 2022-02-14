@@ -11,6 +11,8 @@ const logger = require("morgan");
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
+const profileRouter = require("./routes/profile");
+const fs = require('fs');
 
 const { json, urlencoded } = express;
 
@@ -43,6 +45,8 @@ app.use((req, res, next) => {
 
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
+app.use("/profile", profileRouter);
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
@@ -54,7 +58,19 @@ if (process.env.NODE_ENV === "production") {
   app.get("/", (req, res) => {
     res.send("API is running");
   });
+  app.get('/upload/', async (req, res) => {
+    console.log("woorking...")
+    res.set('Content-Type', 'image/png')
+    const image = __dirname +"\\upload\\"+ req.query.id + '.png';
+    console.log(image);
+    if (fs.existsSync(image)) {
+      res.send(fs.readFileSync(image))
+    } else {
+      res.send("Not found")
+    }
+  });
 }
+
 
 app.use(notFound);
 app.use(errorHandler);

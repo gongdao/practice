@@ -40,7 +40,7 @@ describe('Dashboard tests', () => {
         <Dashboard />
       </MockAuthProvider>,
     );
-    expect(getAllByText('Chats')).toHaveLength(1);
+    expect(getAllByText('Welcome to random facts!')).toHaveLength(1);
     expect(getByPlaceholderText('Type something...')).toBeInTheDocument();
   });
 });

@@ -30,7 +30,7 @@ describe('SignUp tests', () => {
     expect(account).toBeInTheDocument();
     const login = getByText('Login');
     expect(login).toBeInTheDocument();
-    const title = getByText('Create an account');
+    const title = getByText('Sign up');
     expect(title).toBeInTheDocument();
   });
 });
