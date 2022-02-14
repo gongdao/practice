@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/useAuthContext';
 import { useHistory } from 'react-router-dom';
-import { CircularProgress, Typography, Grid, Box, Avatar, Button } from '@mui/material';
+import { CircularProgress, Typography, Grid, Avatar } from '@mui/material';
 import { Navbar } from '../../components/Navbar/Navbar';
-import DeleteIcon from '@mui/icons-material/Delete';
 import MenuBar from '../../components/ProfileMenu/MenuBar';
 import getProfile from '../../helpers/APICalls/getProfile';
 import { iProfile } from '../../interface/Profile';
@@ -16,8 +15,12 @@ export default function Profile(): JSX.Element {
   useEffect(() => {
     const getData = async () => {
       if (loggedInUser) {
-        const response = await getProfile({ userId: loggedInUser.id });
-        setData(response);
+        try {
+          const response = await getProfile({ userId: loggedInUser.id });
+          setData(response);
+        } catch (ex) {
+          console.clear();
+        }
       }
     };
     getData();
@@ -42,32 +45,32 @@ export default function Profile(): JSX.Element {
             <Grid item display="flex" flexDirection="column" alignItems="center">
               <Avatar
                 alt="user photo"
-                src={`https://robohash.org/${loggedInUser.email}.png`}
+                src={`http://localhost:3001/upload?id=${loggedInUser.id}`}
                 sx={{ width: 86, height: 86, my: 3 }}
               />
 
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ mt: 2 }}>
                 First Name: <strong>{data.firstname} </strong>
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ mt: 2 }}>
                 Last Name: <strong>{data.lastname} </strong>
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ mt: 2 }}>
                 Description: <strong>{data.description} </strong>
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ mt: 2 }}>
                 Availability: <strong>{data.availability} </strong>
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ mt: 2 }}>
                 Telephone: <strong>{data.telephone} </strong>
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ mt: 2 }}>
                 Address: <strong>{data.address} </strong>
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ mt: 2 }}>
                 Create Date: <strong>{data.create_date} </strong>
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ mt: 2 }}>
                 Modify Date: <strong>{data.modify_date} </strong>
               </Typography>
             </Grid>

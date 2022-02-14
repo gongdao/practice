@@ -2,8 +2,10 @@ const mongoose = require("mongoose");
 const Profile = require("../models/Profile");
 const User = require("../models/User");
 
+
 // CREATE
 exports.createProfile = function (req, res, next) {
+  console.log("create profile....")
   var profile = new Profile(req.body);
 
   profile.save(function (err) {
@@ -19,6 +21,9 @@ exports.createProfile = function (req, res, next) {
 };
 //UPDATE
 exports.updateProfile = function (req, res, next) {
+  console.log("updateProfile");
+  console.log("req " + req.profile);
+  console.log("body " + req.body.lastname);
   Profile.findByIdAndUpdate(req.profile._id, req.body, { new: true }, function (
     err,
     profile
@@ -50,7 +55,7 @@ exports.deleteProfile = function (req, res, next) {
 };
 
 exports.profileByUserId = function (req, res, next, userId) {
-  console.log("getById: " + userId);
+  //console.log("getById: " + userId);
   Profile.findOne(
     {
       user: userId,
@@ -79,7 +84,7 @@ exports.getByEmail = function (req, res) {
 };
 //Get profile by email
 exports.profileByEmail = function (req, res, next, email) {
-  console.log("getByEmail: " + email);
+  //console.log("getByEmail: " + email);
   User.findOne(
     {
       email:email
@@ -131,3 +136,19 @@ exports.listProfile = function (req, res, next) {
     }
   });
 };
+exports.upload = function (req, res, next) {
+  console.log("upload");
+
+  if (!req.file) {
+    console.log("No file received");
+    return res.send({
+      success: false
+    });
+
+  } else {
+    console.log('file received');
+    return res.send({
+      success: true
+    })
+  }
+}

@@ -45,7 +45,7 @@ const MenuBar = ({ loggedInUser, active }: Props): JSX.Element => {
   };
 
   return (
-    <Grid item xs={10} container justifyContent="flex-end" sx={{ border: '1px solid #fff' }}>
+    <Grid item xs={10} container justifyContent="flex-end" sx={{ border: '1px solid #fff', mt: 10 }}>
       <MenuList>{createMenu()}</MenuList>
     </Grid>
   );
