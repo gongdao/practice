@@ -88,6 +88,7 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
 // @desc Get user data with valid token
 // @access Private
 exports.loadUser = asyncHandler(async (req, res, next) => {
+  console.log("req.user.id : " + req.user.id);
   const user = await User.findById(req.user.id);
 
   if (!user) {

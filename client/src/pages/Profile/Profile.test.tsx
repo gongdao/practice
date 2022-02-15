@@ -1,12 +1,12 @@
 import { render } from '@testing-library/react';
-import Dashboard from './Dashboard';
+import Profile from './Profile';
 import MockAuthProvider from '../../mocks/mockUseAuthProvider';
 
-describe('Dashboard tests', () => {
+describe('Profile tests', () => {
   test('smoke test', () => {
     render(
       <MockAuthProvider>
-        <Dashboard />
+        <Profile />
       </MockAuthProvider>,
     );
   });
@@ -14,7 +14,7 @@ describe('Dashboard tests', () => {
   test('loading snapshot test', () => {
     const { asFragment } = render(
       <MockAuthProvider>
-        <Dashboard />
+        <Profile />
       </MockAuthProvider>,
     );
     expect(asFragment).toMatchSnapshot();
@@ -23,24 +23,25 @@ describe('Dashboard tests', () => {
   test('rendered messages snapshot test', () => {
     const { asFragment } = render(
       <MockAuthProvider>
-        <Dashboard />
+        <Profile />
       </MockAuthProvider>,
     );
     expect(asFragment).toMatchSnapshot();
   });
 
   test('should have loading when waiting for auth provide to check if loggedIn', () => {
-    const { getByRole } = render(<Dashboard />);
+    const { getByRole } = render(<Profile />);
     expect(getByRole('progressbar')).toBeInTheDocument();
   });
 
   test('should have loading when waiting for auth provide to check if loggedIn', async () => {
     const { getAllByText, getByPlaceholderText } = render(
       <MockAuthProvider>
-        <Dashboard />
+        <Profile />
       </MockAuthProvider>,
     );
-    expect(getAllByText('Welcome to random facts!')).toHaveLength(1);
-    expect(getByPlaceholderText('Type something...')).toBeInTheDocument();
+    expect(getAllByText('Profile Photo')).toHaveLength(1);
+    expect(getAllByText('Upload a file from your device')).toHaveLength(1);
+    expect(getAllByText('Delete photo')).toHaveLength(1);
   });
 });
